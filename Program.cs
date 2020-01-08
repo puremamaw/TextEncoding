@@ -15,10 +15,6 @@ namespace TextEncodingLesson
             for (int x = 0; x < input.Length; x++)
             {
                 fiveBits[x] = new FiveBits(input[x]);
-            }
-
-            for (int x = 0; x < input.Length; x++)
-            {
                 toCharHolder += " " + fiveBits[x].ToChar();
                 toIntHolder += " " + fiveBits[x].ToInt();
             }
