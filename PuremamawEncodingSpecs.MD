@@ -64,4 +64,4 @@ Binary - Decimal Number - Character
 111100 -       60       - '&'
 111101 -       61       - '*'
 111110 -       62       - '?'
-111111 -       63       - END
+111111 -       63       - NOT FOUND IN THE ENCODING SPECS

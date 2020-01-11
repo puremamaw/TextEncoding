@@ -6,13 +6,13 @@ namespace TextEncodingLesson
     class Program
     {
         static SixBits[] sixBitsBuffer;
-
         static void Main(string[] args)
         {
             Console.Clear();
             Console.WriteLine("Enter character(s) you want to convert: (Numbers not included)");
             string input = Console.ReadLine();
 
+            //for
             byte[] utfBuffer = System.Text.Encoding.UTF8.GetBytes(input);
             Console.WriteLine($"Utf-16 Encoding for \"{input}\"");
             for (int x = 0; x < utfBuffer.Length; x++)
@@ -20,6 +20,7 @@ namespace TextEncodingLesson
                 Console.Write($"[{x}] '{input[x]}' - {utfBuffer[x]}\n");
             }
 
+            //while
             byte[] pureMamawBuffer = PureMamaw.Text.Encoding.GetBytes(input);
             Console.WriteLine($"Puremamaw Encoding for \"{input}\"");
             int y = 0;
@@ -29,6 +30,7 @@ namespace TextEncodingLesson
                 y++;
             }
 
+            //do
             sixBitsBuffer = PureMamaw.Text.Encoding.ToSixBits(input);
             Console.WriteLine($"SixBits conversion for \"{input}\"");
             int z = 0;
@@ -48,7 +50,7 @@ namespace TextEncodingLesson
             bool shouldContinue = true;
             while (shouldContinue)
             {
-                shouldContinue = program.Choices(args, pureMamawBuffer);
+                shouldContinue = program.FileChoices(args, pureMamawBuffer);
             }
             Console.Beep();
         }
@@ -59,11 +61,11 @@ namespace TextEncodingLesson
             File.WriteAllBytes(path2, buffer);
         }
 
-        public bool Choices(string[] args, byte[] pureMamawBuffer)
+        public bool FileChoices(string[] args, byte[] pureMamawBuffer)
         {
             bool shouldContinue = true;
             try
-            {           
+            {
                 Console.WriteLine("Please select option that you want to do.");
                 Console.WriteLine("1.] File Writer");
                 Console.WriteLine("2.] File Reader");
@@ -99,7 +101,7 @@ namespace TextEncodingLesson
 
                         Console.WriteLine($"File in Binary");
 
-                        foreach(byte b in readByteBuffer)
+                        foreach (byte b in readByteBuffer)
                         {
                             Console.WriteLine($"{new SixBits(b)}");
                         }
@@ -112,7 +114,7 @@ namespace TextEncodingLesson
                         Console.WriteLine("Enter the path you want to be Read");
                         args[0] = Console.ReadLine();
                         Console.WriteLine("Enter the path you want to Write");
-                        args[1] = Console.ReadLine();                    
+                        args[1] = Console.ReadLine();
                         Copy(args[0], args[1]);
                         Console.WriteLine("Successfully Copied");
                         break;
@@ -126,14 +128,14 @@ namespace TextEncodingLesson
                         Console.WriteLine("Invalid Option");
                         break;
                 }
-                return shouldContinue;             
+                return shouldContinue;
             }
             catch (System.IO.FileNotFoundException)
             {
                 Console.WriteLine("File not Found");
                 Console.ReadKey();
                 return shouldContinue;
-            }     
+            }
         }
     }
 }

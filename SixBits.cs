@@ -7,37 +7,25 @@ class SixBits
 
     public SixBits(byte number)
     {
-       
         bool[] tempValues = new bool[MAX_BITS];
-        byte ctr = 0;
-
-        while (number >= 1)
+        for (int x = MAX_BITS - 1; x >= 0; x--)
         {
-            tempValues[ctr++] = number % 2 == 1;
+            tempValues[x] = number % 2 == 1;
             number = (byte)(number / 2);
+            values[x] = tempValues[x];
         }
-
-       
-        int max_index = MAX_BITS - 1;
-        for (int x = 0; x < MAX_BITS; x++)
-        {
-            values[max_index--] = tempValues[x];
-        }
-       
     }
 
     public byte ToByte()
     {
         byte value = 0;
-        int pow = 0;
-        for (int x = values.Length - 1; x >= 0; x--)
+        int pow = 6;
+        for (int x = 0; x < values.Length; x++)
         {
-            if (values[x] == true)
+            if (values[x])
             {
-                value += (byte)Math.Pow(2, pow);
+                value += (byte)Math.Pow(2, pow--);
             }
-
-            pow++;
         }
         return value;
     }
@@ -51,5 +39,4 @@ class SixBits
         }
         return result;
     }
-
 }
