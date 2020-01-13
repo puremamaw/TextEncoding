@@ -7,12 +7,10 @@ class SixBits
 
     public SixBits(byte number)
     {
-        bool[] tempValues = new bool[MAX_BITS];
         for (int x = MAX_BITS - 1; x >= 0; x--)
         {
-            tempValues[x] = number % 2 == 1;
+            values[x] = number % 2 == 1;
             number = (byte)(number / 2);
-            values[x] = tempValues[x];
         }
     }
 

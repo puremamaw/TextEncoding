@@ -57,16 +57,16 @@ namespace PureMamaw.Text
             'X',
             'Y',
             'Z',
-            '`',
-            '~',
-            '!',
-            '@',
-            '#',
-            '$',
-            '%',
-            '^',
-            '&',
-            '*',
+            '1',
+            '2',
+            '3',
+            '4',
+            '5',
+            '6',
+            '7',
+            '8',
+            '9',
+            '0',
             '?',
         };
 
@@ -84,24 +84,36 @@ namespace PureMamaw.Text
         public static byte[] GetBytes(string input)
         {
             byte[] result = new byte[input.Length];
-            bool included = false;
             for (int x = 0; x < input.Length; x++)
             {
+                result[x] = 63;
                 for (int y = 0; y < encodingTable.Length; y++)
                 {
                     if (input[x] == encodingTable[y])
                     {
                         result[x] = (byte)y;
-                        included = true;
                     }
-                }
-
-                if(!included)
-                {
-                   result[x] = 63; 
                 }
             }
             return result;
         }
+
+        // public static int ToInt(string input)
+        // {
+        //     byte[] bytes = GetBytes(input);
+        //     int answer = 0;
+
+        //     for (int x = 0; x < input.Length; x++)
+        //     {
+        //         for (int y = 0; y < encodingTable.Length; y++)
+        //         {
+        //             if (bytes[x] == encodingTable[y])
+        //             {
+        //                 answer =  encodingTable[y];
+        //             }
+        //         }
+        //     }
+        //     return answer;
+        // }
     }
 }
